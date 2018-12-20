@@ -1,11 +1,124 @@
 <%- include('inc/header') %>
 <div class="container">
-  <h1 class="title is-1">Income</h1>
-  <table class="table is-bordered is-striped is-hoverable">
+  <div class="columns">
+    <div class="column is-three-quarters">
+      <h1 class="title is-2">Week Commencing: dd/mm/yyyy</h1>
+    </div>
+    <div class="column is-one-quarter">
+      <h1 class="title is-2">Week #: 23</h1>
+    </div>
+  </div>
+  <div class="columns">
+    <div class="column is-half">
+      <h1 class="title is-4">Income</h1>
+      <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>Amount</th>
+            <th>Charge</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% for(var day in days) {%>
+              <tr>
+                <th><%= days[day] %>
+                <td>£10</td>
+                <td>£10</td>
+              </tr>
+            <% } %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="column">
+      <h1 class="title is-4">Wages</h1>
+      <table class="table is-bordered is-striped is-hoverable">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                <th>Marie</th>
+                <td>£10</td>
+              </tr>
+              <tr>
+                  <th>Sarah</th>
+                  <td>£10</td>
+              </tr>
+              <tr>
+                  <th>Sameena</th>
+                  <td>£10</td>
+              </tr>
+              <tr>
+                  <th>Iqrar</th>
+                  <td>£10</td>
+              </tr>
+              <tr>
+                  <th>Shopping</th>
+                  <td>£10</td>
+              </tr>
+              <tr>
+                  <th>Weekly Total</th>
+                  <td>£100</td>
+              </tr>
+          </tbody>
+        </table>
+    </div>
+
+    <div class="column">
+      <h1 class="title is-4">Expenses</h1>
+      <table class="table is-bordered is-striped is-hoverable">
+          <thead>
+            <tr>
+              <th>Wages</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                <th>Marie</th>
+                <td>£10</td>
+              </tr>
+              <tr>
+                  <th>Sarah</th>
+                  <td>£10</td>
+              </tr>
+              <tr>
+                  <th>Sameena</th>
+                  <td>£10</td>
+              </tr>
+              <tr>
+                  <th>Iqrar</th>
+                  <td>£10</td>
+              </tr>
+              <tr>
+                  <th>Shopping</th>
+                  <td>£10</td>
+              </tr>
+              <tr>
+                  <th>Weekly Total</th>
+                  <td>£100</td>
+              </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+
+  <h1 class="title is-4">Income Detail</h1>
+  <table class="table is-bordered is-striped is-hoverable is-fullwidth">
     <thead>
       <tr>
-        <th>Running</th>
+        <th>Day</th>
+        <th>Cash in Hand</th>
+        <th>Card</th>
+        <th>Bacs/Cheque</th>
+        <th>Total</th>
         <th>Cash</th>
+        <th>Variance</th>
         <th>Charge</th>
       </tr>
     </thead>
@@ -13,11 +126,49 @@
         <% for(var day in days) {%>
           <tr>
             <th><%= days[day] %>
-            <td>£10</td>
-            <td>£10</td>
+            <td>£1</td>
+            <td>£2</td>
+            <td>£3</td>
+            <td>£4</td>
+            <td>£5</td>
+            <td>£6</td>
+            <td>£7</td>
           </tr>
         <% } %>
-      
     </tbody>
   </table>
+
+  <table class="table is-bordered is-striped is-hoverable">
+          <thead>
+            <tr>
+              <th>Details</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                <th>Weekly Total</th>
+                <td>£10</td>
+              </tr>
+              <tr>
+                  <th>Gross Profit</th>
+                  <td>£10</td>
+              </tr>
+              <tr>
+                  <th>Wages Total</th>
+                  <td>£10</td>
+              </tr>
+              <tr>
+                  <th>Expenses Total</th>
+                  <td>£10</td>
+              </tr>
+              <tr>
+                  <th>Net Profit</th>
+                  <td>£100</td>
+              </tr>
+          </tbody>
+        </table>
+
+  
+
 <%- include('inc/footer') %>
