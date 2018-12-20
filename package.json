@@ -1,0 +1,24 @@
+{
+  "name": "sales-record",
+  "version": "1.0.0",
+  "description": "Sales record for small business",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/waqardm/sales-record.git"
+  },
+  "author": "Waqar Mohammad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/waqardm/sales-record/issues"
+  },
+  "homepage": "https://github.com/waqardm/sales-record#readme",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "nodemon": "^1.18.9"
+  }
+}
