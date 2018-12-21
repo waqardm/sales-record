@@ -70,16 +70,19 @@ app.get('/', function(req,res){
     });
 });
 
-app.get('/expenses', function(req, res) {
-    let sql = 'SELECT * FROM expenseType';
+app.get('/manage', function(req, res) {
+    let sqlExpense = 'SELECT * FROM expenseType';
+    let sqlEmployee = "SELECT * FROM employees";
 
-    let query = db.query(sql, (err, result)=> {
+    let query = db.query(sqlExpense, (err, result) => {
         if(err) throw err;
-        console.log(result);
-
-        res.render('expenses', {
-            title: 'Expenses',
-            expense: result
+        let query2 = db.query(sqlEmployee, (err, result2) => {
+            if (err) throw err;
+            res.render('manage', {
+                title: 'Manage',
+                expense: result,
+                employee: result2
+            });
         });
     });
 });

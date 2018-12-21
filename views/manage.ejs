@@ -1,0 +1,62 @@
+<%- include('inc/header') %>
+
+<div class="container">
+    <div class="columns">
+
+        <div class="column is-half">
+            <h2 class="title is-2 m-t-20">Wages</h2>
+            <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>Employee</th>
+                        <th>Weekly Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var res in employee) {%>
+                        <tr>
+                            <th><%= employee[res].name %></th>
+                            <td>&pound; <%= +employee[res].amount %></td>
+                        </tr>
+                    <% } %>
+                    <tr>
+                        <th>Total</th>
+                        <td>£100</td>
+                    </tr>
+                </tbody>
+            </table>
+            <a class="button is-success">Add Employee</a>
+        </div>
+
+        <div class="column is-half">
+            <h2 class="title is-2 m-t-20">Expenses</h2>
+            <table class="table is-bordered is-striped is-hoverable">
+                <thead>
+                    <tr>
+                        <th>Expense</th>
+                        <th>Manage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var res in expense) {%>
+                        <tr>
+                            <th><%= expense[res].name %></th>
+                            <td>
+                                <div class="control">
+                                    <button class="button is-text">Edit</button>
+                                </div>
+                            </td>
+                        </tr>
+                    <% } %>
+                    <tr>
+                        <th>Total</th>
+                        <td>£100</td>
+                    </tr>
+                </tbody>
+            </table>
+            <a class="button is-success">Add Expense</a>
+        </div>
+    </div>
+</div>
+
+<%- include('inc/footer') %>
