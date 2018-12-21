@@ -1,6 +1,26 @@
 const express = require('express');
 const path = require('path');
+const mysql = require('mysql');
 
+//////////////////// Connect DB ////////////////////
+
+const db = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'sales_record'
+});
+
+db.connect(err => {
+  if (err) {
+    throw err;
+  }
+  console.log("mysql connected");
+});
+
+// db.end();
+
+////////////////////////////////////////
 
 //initialise app
 const app = express();
@@ -22,9 +42,64 @@ app.get('/', function(req,res){
             'Thursday',
             'Friday',
             'Saturday'
+        ],
+
+        employees: [
+            'emp1',
+            'emp2',
+            'emp3',
+            'emp4',
+            'emp5'
+        ],
+
+        expenses: [
+            'expense 1',
+            'expense 2',
+            'expense 3',
+            'expense 4',
+            'expense 5',
+        ],
+
+        weekly_totals: [
+            'Weekly Total',
+            'Gross Profit',
+            'Wages Total',
+            'Expenses Total',
+            'Net Profit'
         ]
     });
 });
+
+app.get('/expenses', function(req, res) {
+    let sql = 'SELECT * FROM expenseType';
+
+    let query = db.query(sql, (err, result)=> {
+        if(err) throw err;
+        console.log(result);
+
+        res.render('expenses', {
+            title: 'Expenses',
+            expense: result
+        });
+    });
+});
+
+
+// app.get('/password/update/:id', function (req, res) {
+//     let id = req.params.id;
+//     let sql = `SELECT * FROM passwords WHERE id = '${id}'`;
+
+//     let query = db.query(sql, (err, result) => {
+//         if (err) throw err;
+//         console.log(result);
+//         res.render('update-password', {
+//             title: 'Update Password',
+//             site: result[0].site,
+//             username: result[0].username,
+//             password: result[0].password,
+//             id: id
+//         });
+//     });
 
 
 

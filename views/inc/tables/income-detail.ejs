@@ -1,0 +1,39 @@
+<table class="table is-bordered is-striped is-hoverable is-fullwidth">
+    <thead>
+      <tr>
+        <th>Day</th>
+        <th>Cash in Hand</th>
+        <th>Card</th>
+        <th>Bacs/Cheque</th>
+        <th>Total</th>
+        <th>Cash</th>
+        <th>Variance</th>
+        <th>Charge</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% for(var day in days) {%>
+          <tr>
+            <th><%= days[day] %>
+            <td>£1</td>
+            <td>£2</td>
+            <td>£3</td>
+            <td>£4</td>
+            <td>£5</td>
+            <td>£6</td>
+            <td>£7</td>
+          </tr>
+        <% } %>
+        <tr>
+            <th>Total</th>
+            <td>£100</td>
+            <td>£100</td>
+            <td>£100</td>
+            <td>£100</td>
+            <td>£100</td>
+            <td>£100</td>
+            <td>£100</td>
+          </tr>
+        
+    </tbody>
+</table>

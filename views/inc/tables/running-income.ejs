@@ -1,0 +1,18 @@
+<table class="table is-bordered is-striped is-hoverable is-fullwidth">
+    <thead>
+        <tr>
+        <th>Day</th>
+        <th>Amount</th>
+        <th>Charge</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for(var day in days) {%>
+            <tr>
+            <th><%= days[day] %>
+            <td>£10</td>
+            <td>£10</td>
+            </tr>
+        <% } %>
+    </tbody>
+</table>

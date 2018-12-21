@@ -1,0 +1,20 @@
+<table class="table is-bordered is-striped is-hoverable">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for(var el in employees) {%>
+            <tr>
+                <th><%= employees[el] %></th>
+                <td>£10</td>
+            </tr>
+        <% } %>
+        <tr>
+            <th>Total</th>
+            <td>£100</td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,16 @@
+<table class="table is-bordered is-striped is-hoverable">
+    <thead>
+    <tr>
+        <th>Details</th>
+        <th>Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+        <% for (var el in weekly_totals) {%>
+        <tr>
+        <th><%= weekly_totals[el] %></th>
+        <td>£10</td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
