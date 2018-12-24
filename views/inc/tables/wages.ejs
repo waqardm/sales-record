@@ -8,8 +8,8 @@
     <tbody>
         <% for(var el in employees) {%>
             <tr>
-                <th><%= employees[el] %></th>
-                <td>£10</td>
+                <th><%= employees[el].name %></th>
+                <td><%= employees[el].amount %></td>
             </tr>
         <% } %>
         <tr>

@@ -1,0 +1,32 @@
+<%- include('../inc/header') %>
+
+<div class="container">
+    <h1 class="title is-title">Add Employee</h1>
+</div>
+
+<div class="columns is-centered">
+    <div class="column is-half">
+        <form action="/add/employee" method="post">
+            <div class="field">
+                <label for="name" class="label">Employee Name</label>
+                <div class="control">
+                    <input name="name" id="name" class="input" type="text" placeholder="Employee Name">
+                </div>
+            </div>
+            <div class="field">
+                <label for="amount" class="label">Weekly Amount</label>
+                <div class="control">
+                    <input name="amount" id="amount" class="input" type="text" placeholder="Weekly Amount">
+                </div>
+            </div>
+            <div class="field is-grouped is-pulled-right">
+                <div class="control">
+                    <button class="button is-success" type="submit">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<%- include('../inc/footer') %>

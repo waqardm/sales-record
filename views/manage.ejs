@@ -25,15 +25,17 @@
                     </tr>
                 </tbody>
             </table>
-            <a class="button is-success">Add Employee</a>
+            <form action="/add/employee" method="get">
+                <button class="button is-primary">Add Employee</button>
+            </form>
         </div>
 
         <div class="column is-half">
-            <h2 class="title is-2 m-t-20">Expenses</h2>
+            <h2 class="title is-2 m-t-20">Expense Types</h2>
             <table class="table is-bordered is-striped is-hoverable">
                 <thead>
                     <tr>
-                        <th>Expense</th>
+                        <th>Expense Type</th>
                         <th>Manage</th>
                     </tr>
                 </thead>
@@ -54,7 +56,9 @@
                     </tr>
                 </tbody>
             </table>
-            <a class="button is-success">Add Expense</a>
+            <form action="/add/expense-type">
+                <button class="button is-primary">Add Expense Type</button>
+            </form>
         </div>
     </div>
 </div>

@@ -1,0 +1,26 @@
+<%- include('../inc/header') %>
+
+<div class="container">
+    <h1 class="title is-title">Add Expense Type</h1>
+</div>
+
+<div class="columns is-centered">
+    <div class="column is-half">
+        <form action="/add/expense-type" method="post">
+            <div class="field">
+                <label for="name" class="label">Expense Type</label>
+                <div class="control">
+                    <input name="expense" id="expense" class="input" type="text" placeholder="Expense Type">
+                </div>
+            </div>
+            <div class="field is-grouped is-pulled-right">
+                <div class="control">
+                    <button class="button is-success" type="submit">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<%- include('../inc/footer') %>

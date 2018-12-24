@@ -1,0 +1,44 @@
+<%- include('../inc/header') %>
+
+<div class="container">
+    <h1 class="title is-title">Add Daily Figures</h1>
+</div>
+
+<div class="columns is-centered">
+    <div class="column is-half">
+        <form action="/add/daily" method="post">
+            <div class="field">
+                <label for="date" class="label">Date</label>
+                <div class="control">
+                    <input name="date" id="date" class="input" type="date" >
+                </div>
+            </div>
+            <div class="field">
+                <label for="name" class="label">Cash</label>
+                <div class="control">
+                    <input name="cash" id="cash" class="input" type="text" placeholder="Cash">
+                </div>
+            </div>
+            <div class="field">
+                <label for="name" class="label">Card</label>
+                <div class="control">
+                    <input name="card" id="card" class="input" type="text" placeholder="Card">
+                </div>
+            </div>
+            <div class="field">
+                <label for="name" class="label">Cheque</label>
+                <div class="control">
+                    <input name="cheque" id="cheque" class="input" type="text" placeholder="Cheque">
+                </div>
+            </div>
+            <div class="field is-grouped is-pulled-right">
+                <div class="control">
+                    <button class="button is-success" type="submit">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<%- include('../inc/footer') %>
