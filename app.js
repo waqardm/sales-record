@@ -43,48 +43,87 @@ app.get('/', function(req,res){
         .setLocale('GB')
         .startOf('week')
         .toFormat('dd-MM-yyyy');
-    var day = DateTime.local().startOf('week');
+    var day = DateTime.local()
+        .startOf('week');
 
-    let tue = day.plus({ days: 1 }).toFormat("dd-MM-yyyy");
-    let wed = day.plus({ days: 2 }).toFormat("dd-MM-yyyy");
-    let thur = day.plus({ days: 3 }).toFormat('dd-MM-yyyy');
-    let fri = day.plus({ days: 4 }).toFormat('dd-MM-yyyy');
-    let sat = day.plus({ days: 5 }).toFormat("dd-MM-yyyy");
+    let tue = day.plus({ days: 1 });
+    let wed = day.plus({ days: 2 });
+    let thur = day.plus({ days: 3 });
+    let fri = day.plus({ days: 4 });
+    let sat = day.plus({ days: 5 });
 
+    
     let monCash = 'SELECT * FROM incomeDetail WHERE date = \'' + day.toFormat('yyyy-MM-dd')+ '\'';
+    let tueCash = 'SELECT * FROM incomeDetail WHERE date = \'' + tue.toFormat('yyyy-MM-dd') + '\'';
+    let wedCash = "SELECT * FROM incomeDetail WHERE date = '" + wed.toFormat("yyyy-MM-dd") + "'";
+    let thurCash = "SELECT * FROM incomeDetail WHERE date = '" + thur.toFormat("yyyy-MM-dd") + "'";
+    let friCash = "SELECT * FROM incomeDetail WHERE date = '" + fri.toFormat("yyyy-MM-dd") + "'";
+    let satCash = "SELECT * FROM incomeDetail WHERE date = '" + sat.toFormat("yyyy-MM-dd") + "'";
+
 
     let query = db.query(employees, (err, employees) => {
-            if(err) throw err;
-            let query2 = db.query(total, (err, total) => {
-                if (err) throw err;
-                    let query3 = db.query(monCash, (err, monCash) => {
-                    if (err) throw err;
-                    res.render('index', {
-                    title: 'Sales Record',
-                    date: 'Week Commencing: ' + date,
-                    days: [
-                        'Monday ' + date,
-                        'Tuesday ' + tue,
-                        'Wednesday ' + wed,
-                        'Thursday ' + thur,
-                        'Friday ' + fri,
-                        'Saturday ' + sat, 
-                    ],
-                    monCash: monCash[0].cash,
-                    monCard: monCash[0].card,
-                    monCheque: monCash[0].cheque,
-                    employees: employees,
-                    total: total[0].TotalWages,
-                    expenses: [
-                        'expense 1',
-                        'expense 2',
-                        'expense 3',
-                        'expense 4',
-                        'expense 5',
-                    ]
-                });
-            });
-        });
+        if(err) throw err;
+    let query2 = db.query(total, (err, total) => {
+            if (err) throw err;
+    let query3 = db.query(monCash, (err, monCash) => {
+        if (err) throw err;
+    let query4 = db.query(tueCash, (err, tueCash) => {
+        if(err) throw err;
+    let query5 = db.query(wedCash, (err, wedCash) => {
+      if (err) throw err;
+      let query6 = db.query(thurCash, (err, thurCash) => {
+        if (err) throw err;
+        let query7 = db.query(friCash, (err, friCash) => {
+          if (err) throw err;
+          let query8 = db.query(satCash, (err, satCash) => {
+            if (err) throw err;
+
+            res.render("index", {
+              title: "Sales Record",
+              date: "Week Commencing: " + date,
+              days: [
+                "Monday " + date,
+                "Tuesday " + tue.toFormat("dd-MM-yyyy"),
+                "Wednesday " + wed.toFormat("dd-MM-yyyy"),
+                "Thursday " + thur.toFormat("dd-MM-yyyy"),
+                "Friday " + fri.toFormat("dd-MM-yyyy"),
+                "Saturday " + sat.toFormat("dd-MM-yyyy")
+              ],
+              monCash: monCash[0].cash,
+              monCard: monCash[0].card,
+              monCheque: monCash[0].cheque,
+              tueCash: tueCash[0].cash,
+              tueCard: tueCash[0].card,
+              tueCheque: tueCash[0].cheque,
+              wedCash: wedCash[0].cash,
+              wedCard: wedCash[0].card,
+              wedCheque: wedCash[0].cheque,
+              thurCash: thurCash[0].cash,
+              thurCard: thurCash[0].card,
+              thurCheque: thurCash[0].cheque,
+              friCash: friCash[0].cash,
+              friCard: friCash[0].card,
+              friCheque: friCash[0].cheque,
+              satCash: satCash[0].cash,
+              satCard: satCash[0].card,
+              satCheque: satCash[0].cheque,
+              employees: employees,
+              total: total[0].TotalWages,
+              expenses: [
+                "expense 1",
+                "expense 2",
+                "expense 3",
+                "expense 4",
+                "expense 5"
+              ]
+    });
+    });
+    });
+    });
+    });
+    });
+    });
+    });
     });
 });
 
