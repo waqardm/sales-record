@@ -36,12 +36,10 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req,res){
-    let date = new Date();
     let employees = 'SELECT * FROM employees';
     let query = db.query(employees, (err, employees) => {
         res.render('index', {
         title: 'Sales Record',
-        date: date,
         days: [
             'Monday',
             'Tuesday',
@@ -70,39 +68,24 @@ app.get('/', function(req,res){
     });
 });
 
-    
-        
-
-
-//         app.get('/dashboard', function (req, res) {
-//             let sql = 'SELECT * FROM passwords';
-//             let query = db.query(sql, (err, result) => {
-//                 res.render('dashboard', {
-//                     title: 'Password Manager',
-//                     result: result,
-//                     success: true,
-//                 });
-//             });
-//         });
-
-        
-
-       
-//     });
-// });
 
 app.get('/manage', function(req, res) {
     let sqlExpense = 'SELECT * FROM expenseType';
     let sqlEmployee = 'SELECT * FROM employees';
+    let total = 'SELECT SUM(amount) AS TotalWages FROM employees';
 
     let query = db.query(sqlExpense, (err, result) => {
         if(err) throw err;
         let query2 = db.query(sqlEmployee, (err, result2) => {
             if (err) throw err;
-            res.render('manage', {
-                title: 'Manage',
-                expense: result,
-                employee: result2
+            let query3 = db.query(total, (err, total) => {
+                if (err) throw err;
+                res.render('manage', {
+                    title: 'Manage',
+                    expense: result,
+                    employee: result2,
+                    total: total[0].TotalWages
+                });
             });
         });
     });
@@ -128,6 +111,33 @@ app.post('/add/daily', function(req, res) {
     let query = db.query(sql, daily, (err, result) => {
         if(err) throw err;
         res.redirect('/');
+    });
+});
+
+// Add weekly/daily expense
+app.get('/add/expense', function(req,res){
+    let expenseType = 'SELECT * FROM expenseType';
+    let query = db.query(expenseType, (err, result) => {
+        if(err) throw err;
+        res.render('add/expense', {
+            title: 'Add Expense',
+            expense: result,
+            expenseType_id: result
+        });
+    });
+});
+
+//Add weekly daily expense to DB
+app.post('/add/expense', function(req,res){
+    let sql = 'INSERT INTO expenses SET ?';
+    let expense = {
+        date: req.body.date,
+        expenseType_id: req.body.select,
+        amount: req.body.amount
+    }
+    let query = db.query(sql, expense, (err, result) => {
+        if(err) throw err;
+        res.redirect('../manage');
     });
 });
 
@@ -165,27 +175,12 @@ app.post('/add/expense-type', function(req, res){
     let expense = {
         name: req.body.expense
     }
-
     let query = db.query(sql, expense, (err, result) => {
         if(err) throw err;
         res.redirect('../manage');
     });
 });
 
-
-// app.post('/password/add', function (req, res) {
-
-//     let sql = "INSERT INTO passwords SET ?";
-//     let password = {
-//         site: req.body.site,
-//         username: req.body.username,
-//         password: req.body.password
-//     }
-//     let query = db.query(sql, password, (err, result) => {
-//         if (err) throw err;
-//         res.redirect('../dashboard');
-//     });
-// });
 
 
 app.listen(3000, function(req, res){
