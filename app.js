@@ -37,34 +37,40 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req,res){
     let employees = 'SELECT * FROM employees';
+    let total = "SELECT SUM (amount) AS TotalWages FROM employees";
     let query = db.query(employees, (err, employees) => {
-        res.render('index', {
-        title: 'Sales Record',
-        days: [
-            'Monday',
-            'Tuesday',
-            'Wednesday',
-            'Thursday',
-            'Friday',
-            'Saturday'
-        ],
-        employees: employees,
-        expenses: [
-            'expense 1',
-            'expense 2',
-            'expense 3',
-            'expense 4',
-            'expense 5',
-        ],
+        if(err) throw err;
+            let query2 = db.query(total, (err, total) => {
+            if (err) throw err;
+            res.render('index', {
+            title: 'Sales Record',
+            days: [
+                'Monday',
+                'Tuesday',
+                'Wednesday',
+                'Thursday',
+                'Friday',
+                'Saturday'
+            ],
+            employees: employees,
+            total: total[0].TotalWages,
+            expenses: [
+                'expense 1',
+                'expense 2',
+                'expense 3',
+                'expense 4',
+                'expense 5',
+            ],
 
-        weekly_totals: [
-            'Weekly Total',
-            'Gross Profit',
-            'Wages Total',
-            'Expenses Total',
-            'Net Profit'
-        ]
-        });
+            weekly_totals: [
+                'Weekly Total',
+                'Gross Profit',
+                'Wages Total',
+                'Expenses Total',
+                'Net Profit'
+            ]
+            });
+         });
     });
 });
 
@@ -72,7 +78,7 @@ app.get('/', function(req,res){
 app.get('/manage', function(req, res) {
     let sqlExpense = 'SELECT * FROM expenseType';
     let sqlEmployee = 'SELECT * FROM employees';
-    let total = 'SELECT SUM(amount) AS TotalWages FROM employees';
+    let total = 'SELECT SUM (amount) AS TotalWages FROM employees';
 
     let query = db.query(sqlExpense, (err, result) => {
         if(err) throw err;
