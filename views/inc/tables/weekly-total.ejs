@@ -6,11 +6,25 @@
     </tr>
     </thead>
     <tbody>
-        <% for (var el in weekly_totals) {%>
         <tr>
-        <th><%= weekly_totals[el] %></th>
-        <td>£10</td>
+            <td>Weekly Total</td>
+            <td>£ <%= total %></td>
         </tr>
-        <% } %>
+        <tr>
+            <td>Gross Profit</td>
+            <td>£10</td>
+        </tr>
+        <tr>
+            <td>Wages Total</td>
+            <td>£10</td>
+        </tr>
+        <tr>
+            <td>Expenses Total</td>
+            <td>£10</td>
+        </tr>
+        <tr>
+            <th>Net Profit</th>
+            <td>£10</td>
+        </tr>
     </tbody>
 </table>

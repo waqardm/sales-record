@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
+const { DateTime } = require("luxon");
 
 //////////////////// Connect DB ////////////////////
 
@@ -38,39 +39,52 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', function(req,res){
     let employees = 'SELECT * FROM employees';
     let total = "SELECT SUM (amount) AS TotalWages FROM employees";
-    let query = db.query(employees, (err, employees) => {
-        if(err) throw err;
-            let query2 = db.query(total, (err, total) => {
-            if (err) throw err;
-            res.render('index', {
-            title: 'Sales Record',
-            days: [
-                'Monday',
-                'Tuesday',
-                'Wednesday',
-                'Thursday',
-                'Friday',
-                'Saturday'
-            ],
-            employees: employees,
-            total: total[0].TotalWages,
-            expenses: [
-                'expense 1',
-                'expense 2',
-                'expense 3',
-                'expense 4',
-                'expense 5',
-            ],
+    let date = DateTime.local()
+        .setLocale('GB')
+        .startOf('week')
+        .toFormat('dd-MM-yyyy');
+    var day = DateTime.local().startOf('week');
 
-            weekly_totals: [
-                'Weekly Total',
-                'Gross Profit',
-                'Wages Total',
-                'Expenses Total',
-                'Net Profit'
-            ]
+    let tue = day.plus({ days: 1 }).toFormat("dd-MM-yyyy");
+    let wed = day.plus({ days: 2 }).toFormat("dd-MM-yyyy");
+    let thur = day.plus({ days: 3 }).toFormat('dd-MM-yyyy');
+    let fri = day.plus({ days: 4 }).toFormat('dd-MM-yyyy');
+    let sat = day.plus({ days: 5 }).toFormat("dd-MM-yyyy");
+
+    let monCash = 'SELECT * FROM incomeDetail WHERE date = \'' + day.toFormat('yyyy-MM-dd')+ '\'';
+
+    let query = db.query(employees, (err, employees) => {
+            if(err) throw err;
+            let query2 = db.query(total, (err, total) => {
+                if (err) throw err;
+                    let query3 = db.query(monCash, (err, monCash) => {
+                    if (err) throw err;
+                    res.render('index', {
+                    title: 'Sales Record',
+                    date: 'Week Commencing: ' + date,
+                    days: [
+                        'Monday ' + date,
+                        'Tuesday ' + tue,
+                        'Wednesday ' + wed,
+                        'Thursday ' + thur,
+                        'Friday ' + fri,
+                        'Saturday ' + sat, 
+                    ],
+                    monCash: monCash[0].cash,
+                    monCard: monCash[0].card,
+                    monCheque: monCash[0].cheque,
+                    employees: employees,
+                    total: total[0].TotalWages,
+                    expenses: [
+                        'expense 1',
+                        'expense 2',
+                        'expense 3',
+                        'expense 4',
+                        'expense 5',
+                    ]
+                });
             });
-         });
+        });
     });
 });
 
@@ -128,7 +142,7 @@ app.get('/add/expense', function(req,res){
         res.render('add/expense', {
             title: 'Add Expense',
             expense: result,
-            expenseType_id: result
+            expenseType_id: expenseType.id
         });
     });
 });
@@ -138,7 +152,7 @@ app.post('/add/expense', function(req,res){
     let sql = 'INSERT INTO expenses SET ?';
     let expense = {
         date: req.body.date,
-        expenseType_id: req.body.select,
+        expenseType_id: req.body.expenseType,
         amount: req.body.amount
     }
     let query = db.query(sql, expense, (err, result) => {
@@ -187,9 +201,9 @@ app.post('/add/expense-type', function(req, res){
     });
 });
 
+console.log(DateTime);
 
 
 app.listen(3000, function(req, res){
     console.log('Server started on port 3000');
-    
 })

@@ -19,7 +19,7 @@
                
                 
                 <div class="select">
-                    <select class ="select" id="select" >
+                    <select class ="select" name="expenseType">
                         <option>Select dropdown</option>
                         <% for (var el in expense)  { %>
                             <option name="<%= expense[el].id %>" value="<%= expense[el].id %>"><%= expense[el].name %></option>
