@@ -37,15 +37,12 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req,res){
-    let employees = 'SELECT * FROM employees';
-    let wagesTotal = 'SELECT SUM(amount) AS TotalWages FROM employees';
 
     let date = DateTime.local()
-        .setLocale('GB')
-        .startOf('week')
-        .toFormat('dd-MM-yyyy');
-    var day = DateTime.local()
-        .startOf('week');
+      .setLocale("GB")
+      .startOf("week")
+      .toFormat("dd-MM-yyyy");
+    var day = DateTime.local().startOf("week");
 
     let tue = day.plus({ days: 1 });
     let wed = day.plus({ days: 2 });
@@ -53,9 +50,12 @@ app.get('/', function(req,res){
     let fri = day.plus({ days: 4 });
     let sat = day.plus({ days: 5 });
 
-    let cashTotal = `SELECT SUM(cash) AS cashTotal FROM incomeDetail WHERE date BETWEEN '${ day.toFormat('yyyy-MM-dd') }' AND '${ sat.toFormat('yyyy-MM-dd')}' `;
-    let cardTotal = `SELECT SUM(card) AS cardTotal FROM incomeDetail WHERE date BETWEEN '${ day.toFormat('yyyy-MM-dd') }' AND '${ sat.toFormat('yyyy-MM-dd') }' `;
-    let chequeTotal = `SELECT SUM(cheque) AS chequeTotal FROM incomeDetail WHERE date BETWEEN '${ day.toFormat('yyyy-MM-dd') }' AND '${ sat.toFormat('yyyy-MM-dd') }' `
+    let employees = 'SELECT * FROM employees';
+    let wagesTotal = 'SELECT SUM(amount) AS TotalWages FROM employees';
+    let expenses = `SELECT * FROM expenses INNER JOIN expenseType ON expenses.expenseType_id = expenseType.id WHERE date BETWEEN '${ day.toFormat('yyyy-MM-dd') }' AND '${ sat.toFormat('yyyy-MM-dd') }'`;
+
+    let expensesWeeklyTotal = `SELECT SUM(amount) AS expensesWeeklyTotal FROM expenses WHERE date BETWEEN '${ day.toFormat('yyyy-MM-dd') }' AND '${ sat.toFormat('yyyy-MM-dd') }'`;
+
     
     let monCash = 'SELECT * FROM incomeDetail WHERE date = \'' + day.toFormat('yyyy-MM-dd')+ '\'';
     let tueCash = 'SELECT * FROM incomeDetail WHERE date = \'' + tue.toFormat('yyyy-MM-dd') + '\'';
@@ -69,11 +69,9 @@ app.get('/', function(req,res){
         if(err) throw err;
     let query2 = db.query(wagesTotal, (err, wagesTotal) => {
         if (err) throw err;
-    let query3 = db.query(cashTotal, (err, cashTotal) => {
+    let query3 = db.query(expenses, (err, expenses) => {
         if (err) throw err;
-    let query4 = db.query(cardTotal, (err, cardTotal) => {
-        if (err) throw err;
-    let query5 = db.query(chequeTotal, (err, chequeTotal) => {
+    let query4 = db.query(expensesWeeklyTotal, (err, expensesWeeklyTotal) => {
         if (err) throw err;
     let query6 = db.query(monCash, (err, monCash) => {
         if (err) throw err;
@@ -87,7 +85,6 @@ app.get('/', function(req,res){
         if (err) throw err;
     let query11 = db.query(satCash, (err, satCash) => {
         if (err) throw err;
-        
             res.render("index", {
                 title: "Sales Record",
                 date: "Week Commencing: " + date,
@@ -119,19 +116,10 @@ app.get('/', function(req,res){
                 satCheque: satCash[0].cheque,
                 employees: employees,
                 wagesTotal: wagesTotal[0].TotalWages,
-                cashTotal: cashTotal[0].cashTotal,
-                cardTotal: cardTotal[0].cardTotal,
-                chequeTotal: chequeTotal[0].chequeTotal,
-                expenses: [
-                "expense 1",
-                "expense 2",
-                "expense 3",
-                "expense 4",
-                "expense 5"
-            ]
+                expenses: expenses,
+                expensesWeeklyTotal: expensesWeeklyTotal[0].expensesWeeklyTotal
     });
-    });
-    });        
+    });                 
     });
     });
     });

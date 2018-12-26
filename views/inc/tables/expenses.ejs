@@ -8,13 +8,13 @@
     <tbody>
         <% for(var el in expenses) {%>
             <tr>
-                <th><%= expenses[el] %></th>
-                <td>£10</td>
+                <th><%= expenses[el].name %></th>
+                <td><%= expenses[el].amount %></td>
             </tr>
         <% } %>
         <tr>
             <th>Total</th>
-            <td>£100</td>
+            <td><%= expensesWeeklyTotal %></td>
         </tr>
     </tbody>
 </table>
