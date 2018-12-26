@@ -38,7 +38,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req,res){
     let employees = 'SELECT * FROM employees';
-    let total = "SELECT SUM (amount) AS TotalWages FROM employees";
+    let wagesTotal = 'SELECT SUM(amount) AS TotalWages FROM employees';
+
     let date = DateTime.local()
         .setLocale('GB')
         .startOf('week')
@@ -52,6 +53,9 @@ app.get('/', function(req,res){
     let fri = day.plus({ days: 4 });
     let sat = day.plus({ days: 5 });
 
+    let cashTotal = `SELECT SUM(cash) AS cashTotal FROM incomeDetail WHERE date BETWEEN '${ day.toFormat('yyyy-MM-dd') }' AND '${ sat.toFormat('yyyy-MM-dd')}' `;
+    let cardTotal = `SELECT SUM(card) AS cardTotal FROM incomeDetail WHERE date BETWEEN '${ day.toFormat('yyyy-MM-dd') }' AND '${ sat.toFormat('yyyy-MM-dd') }' `;
+    let chequeTotal = `SELECT SUM(cheque) AS chequeTotal FROM incomeDetail WHERE date BETWEEN '${ day.toFormat('yyyy-MM-dd') }' AND '${ sat.toFormat('yyyy-MM-dd') }' `
     
     let monCash = 'SELECT * FROM incomeDetail WHERE date = \'' + day.toFormat('yyyy-MM-dd')+ '\'';
     let tueCash = 'SELECT * FROM incomeDetail WHERE date = \'' + tue.toFormat('yyyy-MM-dd') + '\'';
@@ -63,59 +67,71 @@ app.get('/', function(req,res){
 
     let query = db.query(employees, (err, employees) => {
         if(err) throw err;
-    let query2 = db.query(total, (err, total) => {
-            if (err) throw err;
-    let query3 = db.query(monCash, (err, monCash) => {
+    let query2 = db.query(wagesTotal, (err, wagesTotal) => {
         if (err) throw err;
-    let query4 = db.query(tueCash, (err, tueCash) => {
+    let query3 = db.query(cashTotal, (err, cashTotal) => {
+        if (err) throw err;
+    let query4 = db.query(cardTotal, (err, cardTotal) => {
+        if (err) throw err;
+    let query5 = db.query(chequeTotal, (err, chequeTotal) => {
+        if (err) throw err;
+    let query6 = db.query(monCash, (err, monCash) => {
+        if (err) throw err;
+    let query7 = db.query(tueCash, (err, tueCash) => {
         if(err) throw err;
-    let query5 = db.query(wedCash, (err, wedCash) => {
-      if (err) throw err;
-      let query6 = db.query(thurCash, (err, thurCash) => {
+    let query8 = db.query(wedCash, (err, wedCash) => {
         if (err) throw err;
-        let query7 = db.query(friCash, (err, friCash) => {
-          if (err) throw err;
-          let query8 = db.query(satCash, (err, satCash) => {
-            if (err) throw err;
-
+    let query9 = db.query(thurCash, (err, thurCash) => {
+        if (err) throw err;
+    let query10 = db.query(friCash, (err, friCash) => {
+        if (err) throw err;
+    let query11 = db.query(satCash, (err, satCash) => {
+        if (err) throw err;
+        
             res.render("index", {
-              title: "Sales Record",
-              date: "Week Commencing: " + date,
-              days: [
+                title: "Sales Record",
+                date: "Week Commencing: " + date,
+                days: [
                 "Monday " + date,
                 "Tuesday " + tue.toFormat("dd-MM-yyyy"),
                 "Wednesday " + wed.toFormat("dd-MM-yyyy"),
                 "Thursday " + thur.toFormat("dd-MM-yyyy"),
                 "Friday " + fri.toFormat("dd-MM-yyyy"),
                 "Saturday " + sat.toFormat("dd-MM-yyyy")
-              ],
-              monCash: monCash[0].cash,
-              monCard: monCash[0].card,
-              monCheque: monCash[0].cheque,
-              tueCash: tueCash[0].cash,
-              tueCard: tueCash[0].card,
-              tueCheque: tueCash[0].cheque,
-              wedCash: wedCash[0].cash,
-              wedCard: wedCash[0].card,
-              wedCheque: wedCash[0].cheque,
-              thurCash: thurCash[0].cash,
-              thurCard: thurCash[0].card,
-              thurCheque: thurCash[0].cheque,
-              friCash: friCash[0].cash,
-              friCard: friCash[0].card,
-              friCheque: friCash[0].cheque,
-              satCash: satCash[0].cash,
-              satCard: satCash[0].card,
-              satCheque: satCash[0].cheque,
-              employees: employees,
-              total: total[0].TotalWages,
-              expenses: [
+                ],
+                monCash: monCash[0].cash,
+                monCard: monCash[0].card,
+                monCheque: monCash[0].cheque,
+                tueCash: tueCash[0].cash,
+                tueCard: tueCash[0].card,
+                tueCheque: tueCash[0].cheque,
+                wedCash: wedCash[0].cash,
+                wedCard: wedCash[0].card,
+                wedCheque: wedCash[0].cheque,
+                thurCash: thurCash[0].cash,
+                thurCard: thurCash[0].card,
+                thurCheque: thurCash[0].cheque,
+                friCash: friCash[0].cash,
+                friCard: friCash[0].card,
+                friCheque: friCash[0].cheque,
+                satCash: satCash[0].cash,
+                satCard: satCash[0].card,
+                satCheque: satCash[0].cheque,
+                employees: employees,
+                wagesTotal: wagesTotal[0].TotalWages,
+                cashTotal: cashTotal[0].cashTotal,
+                cardTotal: cardTotal[0].cardTotal,
+                chequeTotal: chequeTotal[0].chequeTotal,
+                expenses: [
                 "expense 1",
                 "expense 2",
                 "expense 3",
                 "expense 4",
                 "expense 5"
-              ]
+            ]
+    });
+    });
+    });        
     });
     });
     });

@@ -15,60 +15,60 @@
        
           <tr>
             <td><%= days[0] %> </td> 
-            <td>£ <%= monCash %></td>
-            <td>£ <%= monCard %></td>
-            <td>£ <%= monCheque %> </td>
-            <td>£ Total</td>
+            <td id="monCash"><%= monCash %></td>
+            <td id="monCard"><%= monCard %></td>
+            <td id=monCheque><%= monCheque %> </td>
+            <td id="monTotal"></td>
             <td>£ Cash</td>
             <td>£ Variance</td>
             <td>£ Charge</td>
           </tr>
           <tr>
             <td><%= days[1] %> </td> 
-            <td>£ <%= tueCash %></td>
-            <td>£ <%= tueCard %></td>
-            <td>£ <%= tueCheque %> </td>
-            <td>£ Total</td>
+            <td id="tueCash"><%= tueCash %></td>
+            <td id="tueCard"><%= tueCard %></td>
+            <td id="tueCheque"><%= tueCheque %> </td>
+            <td id="tueTotal"></td>
             <td>£ Cash</td>
             <td>£ Variance</td>
             <td>£ Charge</td>
           </tr>
           <tr>
             <td><%= days[2] %> </td> 
-            <td>£ <%= wedCash %></td>
-            <td>£ <%= wedCard %></td>
-            <td>£ <%= wedCheque %> </td>
-            <td>£ Total</td>
+            <td id="wedCash"><%= wedCash %></td>
+            <td id="wedCard"><%= wedCard %></td>
+            <td id="wedCheque"><%= wedCheque %> </td>
+            <td id="wedTotal"></td>
             <td>£ Cash</td>
             <td>£ Variance</td>
             <td>£ Charge</td>
           </tr>
           <tr>
             <td><%= days[3] %> </td> 
-            <td>£ <%= thurCash %></td>
-            <td>£ <%= thurCard %></td>
-            <td>£ <%= thurCheque %> </td>
-            <td>£ Total</td>
+            <td id="thurCash"><%= thurCash %></td>
+            <td id="thurCard"><%= thurCard %></td>
+            <td id="thurCheque"><%= thurCheque %> </td>
+            <td id="thurTotal"></td>
             <td>£ Cash</td>
             <td>£ Variance</td>
             <td>£ Charge</td>
           </tr>
           <tr>
             <td><%= days[4] %> </td> 
-            <td>£ <%= friCash %></td>
-            <td>£ <%= friCard %></td>
-            <td>£ <%= friCheque %> </td>
-            <td>£ Total</td>
+            <td id=friCash><%= friCash %></td>
+            <td id="friCard"><%= friCard %></td>
+            <td id="friCheque"><%= friCheque %> </td>
+            <td id="friTotal"></td>
             <td>£ Cash</td>
             <td>£ Variance</td>
             <td>£ Charge</td>
           </tr>
           <tr>
             <td><%= days[5] %> </td> 
-            <td>£ <%= satCash %></td>
-            <td>£ <%= satCard %></td>
-            <td>£ <%= satCheque %> </td>
-            <td>£ Total</td>
+            <td id="satCash"><%= satCash %></td>
+            <td id="satCard"><%= satCard %></td>
+            <td id="satCheque"><%= satCheque %> </td>
+            <td id="satTotal"></td>
             <td>£ Cash</td>
             <td>£ Variance</td>
             <td>£ Charge</td>
@@ -76,10 +76,10 @@
         
         <tr>
             <th>Total</th>
-            <td>£100</td>
-            <td>£100</td>
-            <td>£100</td>
-            <td>£100</td>
+            <td>£ <%= cashTotal %></td>
+            <td>£ <%= cardTotal %></td>
+            <td>£ <%= chequeTotal %></td>
+            <td id="sumDailyTotals"></td>
             <td>£100</td>
             <td>£100</td>
             <td>£100</td>
