@@ -21,7 +21,7 @@
             <td id="monTotal"></td>
             <td id="dailyTillCashMon"><%= monTillCash %></td>
             <td id="monVariance"></td>
-            <td>£ Charge</td>
+            <td id="dailyTillChargeMon"><%= monTillCharge %></td>
           </tr>
           <tr>
             <td><%= days[1] %> </td> 
@@ -31,7 +31,7 @@
             <td id="tueTotal"></td>
             <td id="dailyTillCashTue"><%= tueTillCash - monTillCash %></td>
             <td id="tueVariance"></td>
-            <td>£ Charge</td>
+            <td id="dailyTillChargeTue"><%= tueTillCharge - monTillCharge %></td>
           </tr>
           <tr>
             <td><%= days[2] %> </td> 
@@ -41,7 +41,7 @@
             <td id="wedTotal"></td>
             <td id="dailyTillCashWed"><%= wedTillCash - tueTillCash %> </td>
             <td id="wedVariance"></td>
-            <td>£ Charge</td>
+            <td id="dailyTillChargeWed"><%= wedTillCharge - tueTillCharge %></td>
           </tr>
           <tr>
             <td><%= days[3] %> </td> 
@@ -51,7 +51,7 @@
             <td id="thurTotal"></td>
             <td id="dailyTillCashThur"><%= thurTillCash - wedTillCash %></td>
             <td id="thurVariance"></td>
-            <td>£ Charge</td>
+            <td id="dailyTillChargeThur"><%= thurTillCharge - wedTillCharge %></td>
           </tr>
           <tr>
             <td><%= days[4] %> </td> 
@@ -61,7 +61,7 @@
             <td id="friTotal"></td>
             <td id="dailyTillCashFri"><%= friTillCash - thurTillCash %></td>
             <td id="friVariance"></td>
-            <td>£ Charge</td>
+            <td id="dailyTillChargeFri"><%= friTillCharge - thurTillCharge %></td>
           </tr>
           <tr>
             <td><%= days[5] %> </td> 
@@ -71,7 +71,7 @@
             <td id="satTotal"></td>
             <td id="dailyTillCashSat"><%= satTillCash - friTillCash %></td>
             <td id="satVariance"></td>
-            <td>£ Charge</td>
+            <td id="dailyTillChargeSat"><%= satTillCharge - friTillCharge %></td>
           </tr>
         
         <tr>
@@ -82,7 +82,7 @@
             <td id="sumDailyTotals"></td>
             <td id="dailyTillCashTotal"></td>
             <td id="sumDailyVariance"></td>
-            <td>£100</td>
+            <td id=sumDailyTillChargeTotal></td>
           </tr>
         
     </tbody>
