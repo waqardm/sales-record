@@ -9,12 +9,12 @@
         <% for(var el in expenses) {%>
             <tr>
                 <th><%= expenses[el].name %></th>
-                <td><%= expenses[el].amount %></td>
+                <td>£ <%= expenses[el].amount %></td>
             </tr>
         <% } %>
         <tr>
             <th>Total</th>
-            <td><%= expensesWeeklyTotal %></td>
+            <td>£ <%= expensesWeeklyTotal %></td>
         </tr>
     </tbody>
 </table>

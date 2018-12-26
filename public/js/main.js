@@ -6,31 +6,43 @@ let monCash = document.getElementById('monCash').innerHTML;
 let monCard = document.getElementById('monCard').innerHTML;
 let monCheque = document.getElementById('monCheque').innerHTML;
 let monTotal = document.getElementById('monTotal');
+let monTillCash = document.getElementById("monTillCash").innerHTML;
+let monTillCharge = document.getElementById("monTillCharge").innerHTML;
 
 let tueCash = document.getElementById("tueCash").innerHTML;
 let tueCard = document.getElementById("tueCard").innerHTML;
 let tueCheque = document.getElementById("tueCheque").innerHTML;
 let tueTotal = document.getElementById("tueTotal");
+let tueTillCash = document.getElementById("tueTillCash").innerHTML;
+let tueTillCharge = document.getElementById("tueTillCharge").innerHTML;
 
 let wedCash = document.getElementById("wedCash").innerHTML;
 let wedCard = document.getElementById("wedCard").innerHTML;
 let wedCheque = document.getElementById("wedCheque").innerHTML;
 let wedTotal = document.getElementById("wedTotal");
+let wedTillCash = document.getElementById("wedTillCash").innerHTML;
+let wedTillCharge = document.getElementById("wedTillCharge").innerHTML;
 
 let thurCash = document.getElementById("thurCash").innerHTML;
 let thurCard = document.getElementById("thurCard").innerHTML;
 let thurCheque = document.getElementById("thurCheque").innerHTML;
 let thurTotal = document.getElementById("thurTotal");
+let thurTillCash = document.getElementById("thurTillCash").innerHTML;
+let thurTillCharge = document.getElementById("thurTillCharge").innerHTML;
 
 let friCash = document.getElementById("friCash").innerHTML;
 let friCard = document.getElementById("friCard").innerHTML;
 let friCheque = document.getElementById("friCheque").innerHTML;
 let friTotal = document.getElementById("friTotal");
+let friTillCash = document.getElementById("friTillCash").innerHTML;
+let friTillCharge = document.getElementById("friTillCharge").innerHTML;
 
 let satCash = document.getElementById("satCash").innerHTML;
 let satCard = document.getElementById("satCard").innerHTML;
 let satCheque = document.getElementById("satCheque").innerHTML;
 let satTotal = document.getElementById("satTotal");
+let satTillCash = document.getElementById("satTillCash").innerHTML;
+let satTillCharge = document.getElementById("satTillCharge").innerHTML;
 
 
 // Daily totals of cash/card/cheque
@@ -52,6 +64,12 @@ document.getElementById('sumCardWeek').innerHTML = sumWeeklyTotals(monCard, tueC
 
 //sum of cheque for week
 document.getElementById('sumChequeWeek').innerHTML = sumWeeklyTotals(monCheque, tueCheque, wedCheque, thurCheque, friCheque, satCheque);
+
+//sum of weekTillCash
+document.getElementById('weekTillCash').innerHTML = sumWeeklyTotals(monTillCash, tueTillCash, wedTillCash, thurTillCash, friTillCash, satTillCash);
+
+//sum of weekTillCharge
+document.getElementById('weekTillCharge').innerHTML = sumWeeklyTotals(monTillCharge, tueTillCharge, wedTillCharge, thurTillCharge, friTillCharge, satTillCharge);
 
 
 function addDailyTotals(a,b,c){

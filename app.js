@@ -56,14 +56,24 @@ app.get('/', function(req,res){
 
     let expensesWeeklyTotal = `SELECT SUM(amount) AS expensesWeeklyTotal FROM expenses WHERE date BETWEEN '${ day.toFormat('yyyy-MM-dd') }' AND '${ sat.toFormat('yyyy-MM-dd') }'`;
 
+    //getting cash/charge figures based on system calculations
+    let monCashCharge = "SELECT * FROM runningIncome WHERE date = '" + day.toFormat("yyyy-MM-dd") + "'";
+    let tueCashCharge = "SELECT * FROM runningIncome WHERE date = '" + tue.toFormat("yyyy-MM-dd") + "'";
+    let wedCashCharge = "SELECT * FROM runningIncome WHERE date = '" + wed.toFormat("yyyy-MM-dd") + "'";
+    let thurCashCharge = "SELECT * FROM runningIncome WHERE date = '" + thur.toFormat("yyyy-MM-dd") + "'";
+    let friCashCharge = 'SELECT * FROM runningIncome WHERE date = \'' + fri.toFormat('yyyy-MM-dd') + '\'';
+    let satCashCharge = "SELECT * FROM runningIncome WHERE date = '" + sat.toFormat("yyyy-MM-dd") + "'";
+
     
+    //getting cash in hand, card, cheque figures
     let monCash = 'SELECT * FROM incomeDetail WHERE date = \'' + day.toFormat('yyyy-MM-dd')+ '\'';
     let tueCash = 'SELECT * FROM incomeDetail WHERE date = \'' + tue.toFormat('yyyy-MM-dd') + '\'';
     let wedCash = "SELECT * FROM incomeDetail WHERE date = '" + wed.toFormat("yyyy-MM-dd") + "'";
     let thurCash = "SELECT * FROM incomeDetail WHERE date = '" + thur.toFormat("yyyy-MM-dd") + "'";
     let friCash = "SELECT * FROM incomeDetail WHERE date = '" + fri.toFormat("yyyy-MM-dd") + "'";
     let satCash = "SELECT * FROM incomeDetail WHERE date = '" + sat.toFormat("yyyy-MM-dd") + "'";
-
+    
+    
 
     let query = db.query(employees, (err, employees) => {
         if(err) throw err;
@@ -72,6 +82,18 @@ app.get('/', function(req,res){
     let query3 = db.query(expenses, (err, expenses) => {
         if (err) throw err;
     let query4 = db.query(expensesWeeklyTotal, (err, expensesWeeklyTotal) => {
+        if (err) throw err;
+    let query5 = db.query(monCashCharge, (err, monCashCharge) => {
+            if (err) throw err;
+    let query5 = db.query(tueCashCharge, (err, tueCashCharge) => {
+        if (err) throw err;
+    let query5 = db.query(wedCashCharge, (err, wedCashCharge) => {
+        if (err) throw err;
+    let query5 = db.query(thurCashCharge, (err, thurCashCharge) => {
+        if (err) throw err;
+    let query5 = db.query(friCashCharge, (err, friCashCharge) => {
+        if (err) throw err;
+    let query5 = db.query(satCashCharge, (err, satCashCharge) => {
         if (err) throw err;
     let query6 = db.query(monCash, (err, monCash) => {
         if (err) throw err;
@@ -96,6 +118,18 @@ app.get('/', function(req,res){
                 "Friday " + fri.toFormat("dd-MM-yyyy"),
                 "Saturday " + sat.toFormat("dd-MM-yyyy")
                 ],
+                monTillCash: monCashCharge[0].cash,
+                monTillCharge: monCashCharge[0].charge,
+                tueTillCash: tueCashCharge[0].cash,
+                tueTillCharge: tueCashCharge[0].charge,
+                wedTillCash: wedCashCharge[0].cash,
+                wedTillCharge: wedCashCharge[0].charge,
+                thurTillCash: thurCashCharge[0].cash,
+                thurTillCharge: thurCashCharge[0].charge,
+                friTillCash: friCashCharge[0].cash,
+                friTillCharge: friCashCharge[0].charge,
+                satTillCash: satCashCharge[0].cash,
+                satTillCharge: satCashCharge[0].charge,
                 monCash: monCash[0].cash,
                 monCard: monCash[0].card,
                 monCheque: monCash[0].cheque,
@@ -119,7 +153,13 @@ app.get('/', function(req,res){
                 expenses: expenses,
                 expensesWeeklyTotal: expensesWeeklyTotal[0].expensesWeeklyTotal
     });
+    });
     });                 
+    });
+    });
+    });
+    });
+    });
     });
     });
     });
@@ -199,6 +239,28 @@ app.post('/add/expense', function(req,res){
         amount: req.body.amount
     }
     let query = db.query(sql, expense, (err, result) => {
+        if(err) throw err;
+        res.redirect('../manage');
+    });
+});
+
+// Add daily cash/charge
+app.get('/add/cash-charge', function(req, res){
+    res.render('add/cash-charge', {
+        title: 'Add Cash / Charge'
+    });
+});
+
+// Add daily cash/charge to db
+app.post('/add/cash-charge', function(req,res) {
+    let sql = 'INSERT INTO runningIncome SET ?';
+    let figures = {
+        date: req.body.date,
+        cash: req.body.cash,
+        charge: req.body.cash
+    }
+
+    let query = db.query(sql, figures, (err, result) => {
         if(err) throw err;
         res.redirect('../manage');
     });

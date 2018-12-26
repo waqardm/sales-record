@@ -1,18 +1,46 @@
 <table class="table is-bordered is-striped is-hoverable is-fullwidth">
     <thead>
         <tr>
-        <th>Day</th>
-        <th>Cash</th>
-        <th>Charge</th>
+            <th>Day</th>
+            <th>Cash</th>
+            <th>Charge</th>
         </tr>
     </thead>
     <tbody>
-        <% for(var day in days) {%>
             <tr>
-            <td><%= days[day] %></td>
-                <td>£10</td>
-                <td>£10</td>
+                <td><%= days[0] %></td>
+                <td id="monTillCash"><%= monTillCash %></td>
+                <td id="monTillCharge"><%= monTillCharge %></td>
             </tr>
-        <% } %>
+            <tr>
+                <td><%= days[1] %></td>
+                <td id="tueTillCash"><%= tueTillCash %></td>
+                <td id="tueTillCharge"><%= tueTillCharge %></td>
+            </tr>
+            <tr>
+                <td><%= days[2] %></td>
+                <td id="wedTillCash"><%= wedTillCash %></td>
+                <td id="wedTillCharge"><%= wedTillCharge %></td>
+            </tr>
+            <tr>
+                <td><%= days[3] %></td>
+                <td id="thurTillCash"><%= thurTillCash %></td>
+                <td id="thurTillCharge"><%= thurTillCharge %></td>
+            </tr>
+            <tr>
+                <td><%= days[4] %></td>
+                <td id="friTillCash"><%= friTillCash %></td>
+                <td id="friTillCharge"><%= friTillCharge %></td>
+            </tr>
+            <tr>
+                <td><%= days[5] %></td>
+                <td id="satTillCash"><%= satTillCash %></td>
+                <td id="satTillCharge"><%= satTillCharge %></td>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <td id="weekTillCash"></td>
+                <td id="weekTillCharge"></td>
+            </tr>
     </tbody>
 </table>

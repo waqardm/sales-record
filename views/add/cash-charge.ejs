@@ -3,31 +3,29 @@
 <div class="container">
     <div class="columns is-centered">
         <div class="column is-half">
-            <h1 class="title is-title">Add Expense</h1>
+            <h1 class="title is-title">Add Daily Cash &amp; Charge</h1>
         </div>
     </div>
 
     <div class="columns is-centered">
         <div class="column is-half">
-            <form action="/add/expense" method="post">
+            <form action="/add/cash-charge" method="post">
                 <div class="field">
                     <label for="date" class="label">Date</label>
                     <div class="control">
                         <input name="date" id="date" class="input" type="date" >
                     </div>
                 </div>
-                <div class="select">
-                    <select class ="select" name="expenseType">
-                        <option>Select dropdown</option>
-                        <% for (var el in expense)  { %>
-                            <option name="<%= expense[el].id %>" value="<%= expense[el].id %>"><%= expense[el].name %></option>
-                        <% } %>
-                    </select>
+                <div class="field">
+                    <label for="name" class="label">Cash</label>
+                    <div class="control">
+                        <input name="cash" id="cash" class="input" type="text" placeholder="Cash">
+                    </div>
                 </div>
                 <div class="field">
-                    <label for="name" class="label">Amount</label>
+                    <label for="name" class="label">Charge</label>
                     <div class="control">
-                        <input name="amount" id="amount" class="input" type="text" placeholder="Amount">
+                        <input name="charge" id="charge" class="input" type="text" placeholder="Charge">
                     </div>
                 </div>
                 <div class="field is-grouped is-pulled-right">
