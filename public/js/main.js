@@ -1,4 +1,3 @@
-
 // Income Detail Table Total Calculation
 
 //Setting variables
@@ -8,6 +7,7 @@ let monCheque = document.getElementById('monCheque').innerHTML;
 let monTotal = document.getElementById('monTotal');
 let monTillCash = document.getElementById("monTillCash").innerHTML;
 let monTillCharge = document.getElementById("monTillCharge").innerHTML;
+let dailyTillCashMon = document.getElementById('dailyTillCashMon').innerHTML;
 
 let tueCash = document.getElementById("tueCash").innerHTML;
 let tueCard = document.getElementById("tueCard").innerHTML;
@@ -15,6 +15,7 @@ let tueCheque = document.getElementById("tueCheque").innerHTML;
 let tueTotal = document.getElementById("tueTotal");
 let tueTillCash = document.getElementById("tueTillCash").innerHTML;
 let tueTillCharge = document.getElementById("tueTillCharge").innerHTML;
+let dailyTillCashTue = document.getElementById("dailyTillCashTue").innerHTML;
 
 let wedCash = document.getElementById("wedCash").innerHTML;
 let wedCard = document.getElementById("wedCard").innerHTML;
@@ -22,6 +23,7 @@ let wedCheque = document.getElementById("wedCheque").innerHTML;
 let wedTotal = document.getElementById("wedTotal");
 let wedTillCash = document.getElementById("wedTillCash").innerHTML;
 let wedTillCharge = document.getElementById("wedTillCharge").innerHTML;
+let dailyTillCashWed = document.getElementById("dailyTillCashWed").innerHTML;
 
 let thurCash = document.getElementById("thurCash").innerHTML;
 let thurCard = document.getElementById("thurCard").innerHTML;
@@ -29,6 +31,7 @@ let thurCheque = document.getElementById("thurCheque").innerHTML;
 let thurTotal = document.getElementById("thurTotal");
 let thurTillCash = document.getElementById("thurTillCash").innerHTML;
 let thurTillCharge = document.getElementById("thurTillCharge").innerHTML;
+let dailyTillCashThur = document.getElementById("dailyTillCashThur").innerHTML;
 
 let friCash = document.getElementById("friCash").innerHTML;
 let friCard = document.getElementById("friCard").innerHTML;
@@ -36,6 +39,7 @@ let friCheque = document.getElementById("friCheque").innerHTML;
 let friTotal = document.getElementById("friTotal");
 let friTillCash = document.getElementById("friTillCash").innerHTML;
 let friTillCharge = document.getElementById("friTillCharge").innerHTML;
+let dailyTillCashFri = document.getElementById("dailyTillCashFri").innerHTML;
 
 let satCash = document.getElementById("satCash").innerHTML;
 let satCard = document.getElementById("satCard").innerHTML;
@@ -43,6 +47,8 @@ let satCheque = document.getElementById("satCheque").innerHTML;
 let satTotal = document.getElementById("satTotal");
 let satTillCash = document.getElementById("satTillCash").innerHTML;
 let satTillCharge = document.getElementById("satTillCharge").innerHTML;
+let dailyTillCashSat = document.getElementById("dailyTillCashFri").innerHTML;
+
 
 
 // Daily totals of cash/card/cheque
@@ -52,6 +58,20 @@ wedTotal = wedTotal.innerHTML = addDailyTotals(wedCash, wedCard, wedCheque);
 thurTotal = thurTotal.innerHTML = addDailyTotals(thurCash, thurCard, thurCheque);
 friTotal = friTotal.innerHTML = addDailyTotals(friCash, friCard, friCheque);
 satTotal = satTotal.innerHTML = addDailyTotals(satCash, satCard, satCheque);
+
+let monVariance = document.getElementById('monVariance').innerHTML = variance(monTotal, monTillCash);
+let tueVariance = document.getElementById('tueVariance').innerHTML = variance(tueTotal, tueTillCash);
+let wedVariance = document.getElementById('wedVariance').innerHTML = variance(wedTotal, wedTillCash);
+let thurVariance = document.getElementById('thurVariance').innerHTML = variance(thurTotal, thurTillCash);
+let friVariance = document.getElementById('friVariance').innerHTML = variance(friTotal, friTillCash);
+let satVariance = document.getElementById('satVariance').innerHTML = variance(satTotal, satTillCash);
+
+
+//function for calculating variance
+function variance(a,b) {
+    return a - b
+}
+
 
 //sum of totals (daily) for cash/card/cheque
 document.getElementById('sumDailyTotals').innerHTML = sumDailyTotals(monTotal, tueTotal, wedTotal, thurTotal, friTotal, satTotal);
@@ -70,6 +90,12 @@ document.getElementById('weekTillCash').innerHTML = sumWeeklyTotals(monTillCash,
 
 //sum of weekTillCharge
 document.getElementById('weekTillCharge').innerHTML = sumWeeklyTotals(monTillCharge, tueTillCharge, wedTillCharge, thurTillCharge, friTillCharge, satTillCharge);
+
+//sum of daily till expected cash values
+document.getElementById('dailyTillCashTotal').innerHTML = sumWeeklyTotals(dailyTillCashMon, dailyTillCashTue, dailyTillCashWed, dailyTillCashThur, dailyTillCashFri, dailyTillCashSat);
+
+//sum of variances
+document.getElementById('sumDailyVariance').innerHTML = sumWeeklyTotals(monVariance, tueVariance, wedVariance, thurVariance, friVariance, satVariance);
 
 
 function addDailyTotals(a,b,c){

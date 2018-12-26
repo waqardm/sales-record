@@ -6,7 +6,7 @@
         <th>Card</th>
         <th>Bacs/Cheque</th>
         <th>Total</th>
-        <th>Cash</th>
+        <th>Till Cash</th>
         <th>Variance</th>
         <th>Charge</th>
       </tr>
@@ -19,8 +19,8 @@
             <td id="monCard"><%= monCard %></td>
             <td id=monCheque><%= monCheque %> </td>
             <td id="monTotal"></td>
-            <td>£ Cash</td>
-            <td>£ Variance</td>
+            <td id="dailyTillCashMon"><%= monTillCash %></td>
+            <td id="monVariance"></td>
             <td>£ Charge</td>
           </tr>
           <tr>
@@ -29,8 +29,8 @@
             <td id="tueCard"><%= tueCard %></td>
             <td id="tueCheque"><%= tueCheque %> </td>
             <td id="tueTotal"></td>
-            <td>£ Cash</td>
-            <td>£ Variance</td>
+            <td id="dailyTillCashTue"><%= tueTillCash - monTillCash %></td>
+            <td id="tueVariance"></td>
             <td>£ Charge</td>
           </tr>
           <tr>
@@ -39,8 +39,8 @@
             <td id="wedCard"><%= wedCard %></td>
             <td id="wedCheque"><%= wedCheque %> </td>
             <td id="wedTotal"></td>
-            <td>£ Cash</td>
-            <td>£ Variance</td>
+            <td id="dailyTillCashWed"><%= wedTillCash - tueTillCash %> </td>
+            <td id="wedVariance"></td>
             <td>£ Charge</td>
           </tr>
           <tr>
@@ -49,8 +49,8 @@
             <td id="thurCard"><%= thurCard %></td>
             <td id="thurCheque"><%= thurCheque %> </td>
             <td id="thurTotal"></td>
-            <td>£ Cash</td>
-            <td>£ Variance</td>
+            <td id="dailyTillCashThur"><%= thurTillCash - wedTillCash %></td>
+            <td id="thurVariance"></td>
             <td>£ Charge</td>
           </tr>
           <tr>
@@ -59,18 +59,18 @@
             <td id="friCard"><%= friCard %></td>
             <td id="friCheque"><%= friCheque %> </td>
             <td id="friTotal"></td>
-            <td>£ Cash</td>
-            <td>£ Variance</td>
+            <td id="dailyTillCashFri"><%= friTillCash - thurTillCash %></td>
+            <td id="friVariance"></td>
             <td>£ Charge</td>
           </tr>
           <tr>
             <td><%= days[5] %> </td> 
             <td id="satCash"><%= satCash %></td>
             <td id="satCard"><%= satCard %></td>
-            <td id="satCheque"><%= satCheque %> </td>
+            <td id="satCheque"><%= satCheque %></td>
             <td id="satTotal"></td>
-            <td>£ Cash</td>
-            <td>£ Variance</td>
+            <td id="dailyTillCashSat"><%= satTillCash - friTillCash %></td>
+            <td id="satVariance"></td>
             <td>£ Charge</td>
           </tr>
         
@@ -80,8 +80,8 @@
             <td id=sumCardWeek></td>
             <td id=sumChequeWeek></td>
             <td id="sumDailyTotals"></td>
-            <td>£100</td>
-            <td>£100</td>
+            <td id="dailyTillCashTotal"></td>
+            <td id="sumDailyVariance"></td>
             <td>£100</td>
           </tr>
         
