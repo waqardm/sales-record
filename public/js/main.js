@@ -1,5 +1,7 @@
 
 // Income Detail Table Total Calculation
+
+//Setting variables
 let monCash = document.getElementById('monCash').innerHTML;
 let monCard = document.getElementById('monCard').innerHTML;
 let monCheque = document.getElementById('monCheque').innerHTML;
@@ -31,13 +33,26 @@ let satCheque = document.getElementById("satCheque").innerHTML;
 let satTotal = document.getElementById("satTotal");
 
 
+// Daily totals of cash/card/cheque
 monTotal = monTotal.innerHTML = addDailyTotals(monCash, monCard, monCheque);
 tueTotal = tueTotal.innerHTML = addDailyTotals(tueCash, tueCard, tueCheque);
 wedTotal = wedTotal.innerHTML = addDailyTotals(wedCash, wedCard, wedCheque);
 thurTotal = thurTotal.innerHTML = addDailyTotals(thurCash, thurCard, thurCheque);
 friTotal = friTotal.innerHTML = addDailyTotals(friCash, friCard, friCheque);
 satTotal = satTotal.innerHTML = addDailyTotals(satCash, satCard, satCheque);
+
+//sum of totals (daily) for cash/card/cheque
 document.getElementById('sumDailyTotals').innerHTML = sumDailyTotals(monTotal, tueTotal, wedTotal, thurTotal, friTotal, satTotal);
+
+//sum of cash for week
+document.getElementById('sumCashWeek').innerHTML = sumWeeklyTotals(monCash, tueCash, wedCash, thurCash, friCash, satCash);
+
+//sum of card for week
+document.getElementById('sumCardWeek').innerHTML = sumWeeklyTotals(monCard, tueCard, wedCard, thurCard, friCard, satCard);
+
+//sum of cheque for week
+document.getElementById('sumChequeWeek').innerHTML = sumWeeklyTotals(monCheque, tueCheque, wedCheque, thurCheque, friCheque, satCheque);
+
 
 function addDailyTotals(a,b,c){
     a = parseInt(a);
@@ -47,6 +62,10 @@ function addDailyTotals(a,b,c){
 };
 
 function sumDailyTotals(a,b,c,d,e,f){
+    return a + b + c + d + e + f;
+}
+
+function sumWeeklyTotals(a,b,c,d,e,f) {
     a = parseInt(a);
     b = parseInt(b);
     c = parseInt(c);
