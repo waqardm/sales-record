@@ -287,6 +287,23 @@ app.post('/add/employee', function(req, res) {
     });
 });
 
+// update employee view
+
+app.get('/update/employee/:id', function(req, res){
+    let id = req.params.id;
+    let sql = `SELECT * FROM employees WHERE id = '${ id }'`;
+
+    let query = db.query(sql, (err, employee) => {
+        if(err) throw err;
+        res.render('update/employee', {
+           title: 'Update Employee',
+           id: id,
+           name: employee[0].name,
+           amount: employee[0].amount
+        });
+    });
+});
+
 //Add Expense Type Page
 app.get('/add/expense-type', function(req, res){
     res.render('add/expense-type', {
@@ -300,14 +317,41 @@ app.post('/add/expense-type', function(req, res){
     let expense = {
         name: req.body.expense
     }
-    let query = db.query(sql, expense, (err, result) => {
+    let query = db.query(sql, expense, (err) => {
         if(err) throw err;
         res.redirect('../manage');
     });
 });
 
-console.log(DateTime);
 
+//update expense type view
+app.get('/update/expense-type/:id', function(req, res){
+    let id = req.params.id;
+    let sql = `SELECT * FROM expenseType WHERE id = '${ id }'`;
+
+    let query = db.query(sql, (err, expenseType) => {
+        if(err) throw err;
+        res.render('update/expense-type', {
+          title: "Update ExpenseType",
+          id: id,
+          name: expenseType[0].name,
+        });
+    });
+});
+
+
+//Update Expense Type save method
+app.post('/update/expense-type/:id', function(req, res) {
+    let id = req.params.id;
+    let expense = {
+        name: req.body.expense
+    };
+    let sql = `UPDATE expenseType SET ? WHERE id = '${ id }'`;
+    let query = db.query(sql, expense, (err) => {
+        if (err) throw err;
+        res.redirect('../../manage');
+    });
+});
 
 app.listen(3000, function(req, res){
     console.log('Server started on port 3000');

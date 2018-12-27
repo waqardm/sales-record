@@ -10,18 +10,27 @@
                     <tr>
                         <th>Employee</th>
                         <th>Weekly Amount</th>
+                        <th>Manage</th>
                     </tr>
                 </thead>
                 <tbody>
                     <% for(var res in employee) {%>
                         <tr>
-                            <th><%= employee[res].name %></th>
-                            <td>&pound; <%= +employee[res].amount %></td>
+                            <th id="<%= employee[res].id %>"><%= employee[res].name %></th>
+                            <td>&pound; <%= employee[res].amount %></td>
+                            <td>
+                                <form action="/update/employee/<%=employee[res].id%>">
+                                    <div class="control">
+                                        <button class="button is-text">Edit</button>
+                                    </div>
+                                </form>
+                            </td>
                         </tr>
                     <% } %>
                     <tr>
                         <th>Total</th>
                         <td>£ <%= total %></td>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>
@@ -44,9 +53,11 @@
                         <tr>
                             <th><%= expense[res].name %></th>
                             <td>
-                                <div class="control">
-                                    <button class="button is-text">Edit</button>
-                                </div>
+                                <form action="/update/expense-type/<%= expense[res].id %>">
+                                    <div class="control">
+                                        <button class="button is-text">Edit</button>
+                                    </div>
+                                </form>
                             </td>
                         </tr>
                     <% } %>
