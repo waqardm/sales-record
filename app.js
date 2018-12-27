@@ -288,7 +288,6 @@ app.post('/add/employee', function(req, res) {
 });
 
 // update employee view
-
 app.get('/update/employee/:id', function(req, res){
     let id = req.params.id;
     let sql = `SELECT * FROM employees WHERE id = '${ id }'`;
@@ -301,6 +300,33 @@ app.get('/update/employee/:id', function(req, res){
            name: employee[0].name,
            amount: employee[0].amount
         });
+    });
+});
+
+// update employee in db
+app.post('/update/employee/:id', function(req,res){
+    let id = req.params.id;
+    let sql = `UPDATE employees SET ? WHERE id = '${ id }'`;
+    
+    let employee = {
+        name: req.body.name,
+        amount: req.body.amount
+    };
+
+    let query = db.query(sql, employee, (err) => {
+        if(err) throw err;
+        res.redirect('../../manage');
+    });
+});
+
+//delete employee
+app.get('/delete/employee/:id', function (req, res) {
+    let id = req.params.id;
+    let sql = `DELETE FROM employees where id = '${id}'`;
+
+    let query = db.query(sql, (err) => {
+        if (err) throw err;
+        res.redirect('/manage');
     });
 });
 
@@ -353,6 +379,17 @@ app.post('/update/expense-type/:id', function(req, res) {
     });
 });
 
+//delete expense type
+app.get('/delete/expense-type/:id', function(req, res) {
+    let id = req.params.id;
+    let sql = `DELETE FROM expenseType where id = '${ id }'`;
+    
+    let query = db.query(sql, (err) => {
+        if(err) throw err;
+        res.redirect('/manage');
+    });
+});
+
 app.listen(3000, function(req, res){
     console.log('Server started on port 3000');
-})
+});
