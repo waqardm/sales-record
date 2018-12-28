@@ -393,21 +393,41 @@ app.listen(3000, function(req, res){
     console.log('Server started on port 3000');
 });
 
-let startTestDate = DateTime.local(2018, 12, 1).day;
+let startTestDate = DateTime.local(2018, 01, 1).day;
 let endTestDate = DateTime.local(2018, 12, 31).day;
-let newYear = DateTime.local(2018, 12, 01);
 
-while (startTestDate < endTestDate){
- 
-  if(newYear.weekday == 1){
-       console.log("Mon " + newYear.toFormat('dd-MM-yyyy'));
-       newYear = newYear.plus({ days: 1 });
-   }
-      newYear = newYear.plus({ days: 1 });
-      startTestDate ++
+
+let newYear = DateTime.local(2018, 01, 01);
+
+
+months = () => {
+    let months = [];
+    for (let i = 1; i < 13; i++) {
+        months.push(i);
+    }
+    return months;
 }
 
-// let newYear = DateTime.local(2018, 12, 01);
-// newYear = newYear.plus({ days: 3 });
+years = () => {
+    let years = [];
+    for (let i = 2018; i < 2020; i++){
+        years.push(i);
+    }
+    return years;
+}
 
-//     console.log(newYear);
+// while (startTestDate <= endTestDate) {
+
+//     if (newYear.weekday == 1) {
+//         //console.log("Mon " + newYear.toFormat('dd-MM-yyyy'));
+//         mondays2018.push('Mon ' + newYear.toFormat('dd-MM-yyyy'));
+//         newYear = newYear.plus({ days: 1 });
+//         startTestDate++
+//     }
+//     newYear = newYear.plus({ days: 1 });
+//     startTestDate++
+// }
+
+console.log(years());
+    
+
