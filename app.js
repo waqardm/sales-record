@@ -3,6 +3,7 @@ const path = require('path');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const { DateTime } = require("luxon");
+const  { Info } = require ("luxon");
 
 //////////////////// Connect DB ////////////////////
 
@@ -64,7 +65,6 @@ app.get('/', function(req,res){
     let friCashCharge = 'SELECT * FROM runningIncome WHERE date = \'' + fri.toFormat('yyyy-MM-dd') + '\'';
     let satCashCharge = "SELECT * FROM runningIncome WHERE date = '" + sat.toFormat("yyyy-MM-dd") + "'";
 
-    
     //getting cash in hand, card, cheque figures
     let monCash = 'SELECT * FROM incomeDetail WHERE date = \'' + day.toFormat('yyyy-MM-dd')+ '\'';
     let tueCash = 'SELECT * FROM incomeDetail WHERE date = \'' + tue.toFormat('yyyy-MM-dd') + '\'';
@@ -72,8 +72,6 @@ app.get('/', function(req,res){
     let thurCash = "SELECT * FROM incomeDetail WHERE date = '" + thur.toFormat("yyyy-MM-dd") + "'";
     let friCash = "SELECT * FROM incomeDetail WHERE date = '" + fri.toFormat("yyyy-MM-dd") + "'";
     let satCash = "SELECT * FROM incomeDetail WHERE date = '" + sat.toFormat("yyyy-MM-dd") + "'";
-    
-    
 
     let query = db.query(employees, (err, employees) => {
         if(err) throw err;
@@ -390,6 +388,26 @@ app.get('/delete/expense-type/:id', function(req, res) {
     });
 });
 
+
 app.listen(3000, function(req, res){
     console.log('Server started on port 3000');
 });
+
+let startTestDate = DateTime.local(2018, 12, 1).day;
+let endTestDate = DateTime.local(2018, 12, 31).day;
+let newYear = DateTime.local(2018, 12, 01);
+
+while (startTestDate < endTestDate){
+ 
+  if(newYear.weekday == 1){
+       console.log("Mon " + newYear.toFormat('dd-MM-yyyy'));
+       newYear = newYear.plus({ days: 1 });
+   }
+      newYear = newYear.plus({ days: 1 });
+      startTestDate ++
+}
+
+// let newYear = DateTime.local(2018, 12, 01);
+// newYear = newYear.plus({ days: 3 });
+
+//     console.log(newYear);

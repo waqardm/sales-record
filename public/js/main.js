@@ -139,3 +139,4 @@ if (window.location.pathname === '/'){
         return a + b + c + d + e + f;
     }
 }
+
