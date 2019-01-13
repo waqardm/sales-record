@@ -1,3 +1,4 @@
+<% if(expenses) { %>
 <table class="table is-bordered is-striped is-hoverable">
     <thead>
         <tr>
@@ -18,3 +19,6 @@
         </tr>
     </tbody>
 </table>
+<% } else { %>
+      <h1>no data</h1>
+<% } %>

@@ -150,9 +150,9 @@ app.get('/', function(req,res){
                 wagesTotal: wagesTotal[0].TotalWages,
                 expenses: expenses,
                 expensesWeeklyTotal: expensesWeeklyTotal[0].expensesWeeklyTotal
+            });
     });
     });
-    });                 
     });
     });
     });
@@ -393,28 +393,24 @@ app.listen(3000, function(req, res){
     console.log('Server started on port 3000');
 });
 
-let startTestDate = DateTime.local(2018, 01, 1).day;
-let endTestDate = DateTime.local(2018, 12, 31).day;
+// let startTestDate = DateTime.local(2018, 01, 1).day;
+// let endTestDate = DateTime.local(2018, 12, 31).day;
+
+// //let newYear = DateTime.local(2018, 01, 01);
+
+// years = [2018, 2019, 2020];
+// months = [01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12];
+// yearsAndMonths = [];
 
 
-let newYear = DateTime.local(2018, 01, 01);
+// years.forEach(year => {
+//     yearsAndMonths.push(newYear = DateTime.local(year, 01, 01).toLocaleString());
+//     months.forEach(month => {
+//         yearsAndMonths.push(newYear = DateTime.local(year, month, 01).toLocaleString());
+//     });
+// });
 
 
-months = () => {
-    let months = [];
-    for (let i = 1; i < 13; i++) {
-        months.push(i);
-    }
-    return months;
-}
-
-years = () => {
-    let years = [];
-    for (let i = 2018; i < 2020; i++){
-        years.push(i);
-    }
-    return years;
-}
 
 // while (startTestDate <= endTestDate) {
 
@@ -428,6 +424,6 @@ years = () => {
 //     startTestDate++
 // }
 
-console.log(years());
+// console.log(mondays2018);
     
 
