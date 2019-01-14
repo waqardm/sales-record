@@ -4,14 +4,15 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const { DateTime } = require("luxon");
 const  { Info } = require ("luxon");
+const config = require('./config');
 
 //////////////////// Connect DB ////////////////////
 
 const db = mysql.createConnection({
-    host: 'eu-cdbr-west-02.cleardb.net',
-    user: 'b7acf036a94797',
-    password: 'e3a9c81e',
-    database: 'heroku_67e348ea0c0ec7e'
+    host: config.DB.HOST,
+    user: config.DB.USER,
+    password: config.DB.PASSWORD,
+    database: config.DB.SCHEMA
 });
 
 
@@ -32,9 +33,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // port binding for heroku
-const PORT = process.env.PORT || 5000;
+const PORT = config.PORT;
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
-// db.end();
+
 
 //set view engine
 app.set('views', path.join(__dirname, 'views'));
@@ -88,7 +89,7 @@ app.get('/', function(req,res){
     let query4 = db.query(expensesWeeklyTotal, (err, expensesWeeklyTotal) => {
         if (err) throw err;
     let query5 = db.query(monCashCharge, (err, monCashCharge) => {
-            if (err) throw err;
+        if (err) throw err;
     let query5 = db.query(tueCashCharge, (err, tueCashCharge) => {
         if (err) throw err;
     let query5 = db.query(wedCashCharge, (err, wedCashCharge) => {
@@ -266,7 +267,7 @@ app.post('/add/cash-charge', function(req,res) {
 
     let query = db.query(sql, figures, (err, result) => {
         if(err) throw err;
-        res.redirect('../manage');
+        res.redirect('../');
     });
 });
 
@@ -401,7 +402,7 @@ app.use((error, req, res, next) => {
 
 
 app.listen(3000, function(req, res){
-    console.log('Server started on port 3000');
+    console.log('Server started on port ' + PORT);
 });
 
 // let startTestDate = DateTime.local(2018, 01, 1).day;
