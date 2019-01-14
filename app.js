@@ -311,7 +311,7 @@ app.get('/update/employee/:id', function(req, res){
 app.post('/update/employee/:id', function(req,res){
     let id = req.params.id;
     let sql = `UPDATE employees SET ? WHERE id = '${ id }'`;
-    
+
     let employee = {
         name: req.body.name,
         amount: req.body.amount
@@ -387,11 +387,16 @@ app.post('/update/expense-type/:id', function(req, res) {
 app.get('/delete/expense-type/:id', function(req, res) {
     let id = req.params.id;
     let sql = `DELETE FROM expenseType where id = '${ id }'`;
-    
+
     let query = db.query(sql, (err) => {
         if(err) throw err;
         res.redirect('/manage');
     });
+});
+
+app.use((error, req, res, next) => {
+  console.log(error);
+  res.render("500");
 });
 
 
@@ -431,5 +436,5 @@ app.listen(3000, function(req, res){
 // }
 
 // console.log(mondays2018);
-    
+
 
