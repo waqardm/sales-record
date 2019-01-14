@@ -8,11 +8,12 @@ const  { Info } = require ("luxon");
 //////////////////// Connect DB ////////////////////
 
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'sales_record'
+    host: 'eu-cdbr-west-02.cleardb.net',
+    user: 'b7acf036a94797',
+    password: 'e3a9c81e',
+    database: 'heroku_67e348ea0c0ec7e'
 });
+
 
 db.connect(err => {
   if (err) {
