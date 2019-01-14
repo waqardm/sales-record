@@ -22,6 +22,8 @@ db.connect(err => {
   console.log("mysql connected");
 });
 
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 // db.end();
 
 ////////////////////////////////////////
