@@ -22,9 +22,7 @@ db.connect(err => {
   console.log("mysql connected");
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Listening on ${PORT}`));
-// db.end();
+
 
 ////////////////////////////////////////
 
@@ -32,6 +30,11 @@ app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+// port binding for heroku
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+// db.end();
 
 //set view engine
 app.set('views', path.join(__dirname, 'views'));
