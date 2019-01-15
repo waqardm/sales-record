@@ -8,20 +8,41 @@ const config = require('./config');
 
 //////////////////// Connect DB ////////////////////
 
-const db = mysql.createConnection({
-    host: config.DB.HOST,
-    user: config.DB.USER,
-    password: config.DB.PASSWORD,
-    database: config.DB.SCHEMA
-});
+const db_config = {
+  host: config.DB.HOST,
+  user: config.DB.USER,
+  password: config.DB.PASSWORD,
+  database: config.DB.SCHEMA
+};
+
+let db;
+
+function handleDisconnect() {
+  db = mysql.createConnection(db_config);
+
+  db.connect(function(err) {
+    if (err) {
+      console.log("error when connecting to db:", err);
+      setTimeout(handleDisconnect, 2000);
+    } else {
+      console.log("MySQL connected");
+    }
+  });
+
+  db.on("error", function(err) {
+    if (err.code === "PROTOCOL_CONNECTION_LOST") {
+      console.log("Database Disconnected, trying to reconnect...");
+      handleDisconnect();
+    } else {
+      console.log('Database Error ', err);
+      throw err;
+    }
+  });
+}
+
+handleDisconnect();
 
 
-db.connect(err => {
-  if (err) {
-    throw err;
-  }
-  console.log("mysql connected");
-});
 
 
 
